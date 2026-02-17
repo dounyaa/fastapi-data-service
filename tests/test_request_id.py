@@ -41,9 +41,7 @@ async def test_request_id_logs(caplog) -> None:
         rid = response.headers[REQUEST_ID_HEADER]
 
         assert any(
-            r.request_id == rid
-            and "Health check called" in r.message
-            for r in caplog.records
+            r.request_id == rid and "Health check called" in r.message for r in caplog.records
         )
 
     finally:
