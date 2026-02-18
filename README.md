@@ -1,5 +1,7 @@
 # fastapi-data-service
 ![CI](https://github.com/dounyaa/fastapi-data-service/actions/workflows/ci.yml/badge.svg)
+[![Docker Image](https://img.shields.io/badge/Docker-ghcr.io%2Fdounyaa%2Ffastapi--data--service-blue?logo=docker)](https://github.com/dounyaa/fastapi-data-service/pkgs/container/fastapi-data-service)
+
 
 Backend REST API built with FastAPI, designed with production-grade practices:
 - Structured logging (JSON)
@@ -11,7 +13,32 @@ Backend REST API built with FastAPI, designed with production-grade practices:
 - CI with GitHub Actions
 
 ---
+## Deployed Version
 
+Live production deployment:
+
+`https://fastapi-data-service.onrender.com`
+
+- Health check:
+
+`curl https://fastapi-data-service.onrender.com/api/v1/health`
+
+- Expected response:
+
+`{"status":"ok"}`
+
+- Request ID propagation example:
+
+`curl -H "X-Request-ID: abc123" \
+https://fastapi-data-service.onrender.com/api/v1/health`
+
+- The response will include:
+
+`X-Request-ID: abc123`
+
+If no X-Request-ID is provided, the service automatically generates a 32-character unique ID and returns it in the response header.
+
+---
 ## Features
 
 - Health check endpoint
@@ -24,9 +51,9 @@ Backend REST API built with FastAPI, designed with production-grade practices:
 - Fully tested with pytest (async)
 - Docker-ready
 - CI validated on push & PR
-
+- Production deployment on Render
+  
 ---
-
 ## Architecture
 
 src/
@@ -124,13 +151,19 @@ Example log:
 ```
 
 ---
-## CI
+## CI/CD
 On every push / PR:
 
 - Ruff format check
 - Ruff lint
 - Mypy strict type checking
 - Pytest execution
+
+On push to main:
+
+- Docker image is built
+- Image is pushed to GitHub Container Registry
+- Render automatically deploys the new version
   
 ---
 ## Tech Stack
@@ -139,5 +172,6 @@ On every push / PR:
 - Python 3.11
 - Docker (multi-stage build)
 - GitHub Actions CI
+- Render deployment
 - Structured logging (python-json-logger)
 - ContextVar-based request tracking
