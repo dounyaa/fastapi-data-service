@@ -1,7 +1,8 @@
 # fastapi-data-service
 ![CI](https://github.com/dounyaa/fastapi-data-service/actions/workflows/ci.yml/badge.svg)
 [![Docker Image](https://img.shields.io/badge/Docker-ghcr.io%2Fdounyaa%2Ffastapi--data--service-blue?logo=docker)](https://github.com/dounyaa/fastapi-data-service/pkgs/container/fastapi-data-service)
-![Coverage](https://img.shields.io/badge/coverage-%E2%89%A580%25-brightgreen)
+![Coverage](https://codecov.io/gh/dounyaa/fastapi-data-service/branch/main/graph/badge.svg)
+
 
 
 
